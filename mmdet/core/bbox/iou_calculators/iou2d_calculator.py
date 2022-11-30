@@ -1,3 +1,4 @@
+# Copyright (c) OpenMMLab. All rights reserved.
 import torch
 
 from .builder import IOU_CALCULATORS
@@ -32,10 +33,9 @@ class BboxOverlaps2D:
         Args:
             bboxes1 (Tensor): bboxes have shape (m, 4) in <x1, y1, x2, y2>
                 format, or shape (m, 5) in <x1, y1, x2, y2, score> format.
-            bboxes2 (Tensor): bboxes have shape (m, 4) in <x1, y1, x2, y2>
-                format, shape (m, 5) in <x1, y1, x2, y2, score> format, or be
-                empty. If ``is_aligned `` is ``True``, then m and n must be
-                equal.
+            bboxes2 (Tensor): bboxes have shape (n, 4) in <x1, y1, x2, y2>
+                format, shape (n, 5) in <x1, y1, x2, y2, score> format, or be
+                empty.
             mode (str): "iou" (intersection over union), "iof" (intersection
                 over foreground), or "giou" (generalized intersection over
                 union).
@@ -144,7 +144,7 @@ def bbox_overlaps(bboxes1, bboxes2, mode='iou', is_aligned=False, eps=1e-6):
         but not reduce memory.
         There, we can reduce half the memory and keep the speed.
 
-    If ``is_aligned `` is ``False``, then calculate the overlaps between each
+    If ``is_aligned`` is ``False``, then calculate the overlaps between each
     bbox of bboxes1 and bboxes2, otherwise the overlaps between each aligned
     pair of bboxes1 and bboxes2.
 
@@ -152,7 +152,7 @@ def bbox_overlaps(bboxes1, bboxes2, mode='iou', is_aligned=False, eps=1e-6):
         bboxes1 (Tensor): shape (B, m, 4) in <x1, y1, x2, y2> format or empty.
         bboxes2 (Tensor): shape (B, n, 4) in <x1, y1, x2, y2> format or empty.
             B indicates the batch dim, in shape (B1, B2, ..., Bn).
-            If ``is_aligned `` is ``True``, then m and n must be equal.
+            If ``is_aligned`` is ``True``, then m and n must be equal.
         mode (str): "iou" (intersection over union), "iof" (intersection over
             foreground) or "giou" (generalized intersection over union).
             Default "iou".
@@ -162,7 +162,7 @@ def bbox_overlaps(bboxes1, bboxes2, mode='iou', is_aligned=False, eps=1e-6):
             stability. Default 1e-6.
 
     Returns:
-        Tensor: shape (m, n) if ``is_aligned `` is False else shape (m,)
+        Tensor: shape (m, n) if ``is_aligned`` is False else shape (m,)
 
     Example:
         >>> bboxes1 = torch.FloatTensor([

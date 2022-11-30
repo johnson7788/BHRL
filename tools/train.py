@@ -129,8 +129,8 @@ def main():
     # init the logger before other steps
     timestamp = time.strftime('%Y%m%d_%H%M%S', time.localtime())
     log_file = osp.join(cfg.work_dir, f'{timestamp}.log')
+    print(f"保存日志信息到目录: {cfg.work_dir}, 日志文件： {log_file}")
     logger = get_root_logger(log_file=log_file, log_level=cfg.log_level)
-
     # init the meta dict to record some important information such as
     # environment info and seed, which will be logged
     meta = dict()

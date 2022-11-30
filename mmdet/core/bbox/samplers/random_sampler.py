@@ -1,3 +1,4 @@
+# Copyright (c) OpenMMLab. All rights reserved.
 import torch
 
 from ..builder import BBOX_SAMPLERS
@@ -11,7 +12,7 @@ class RandomSampler(BaseSampler):
     Args:
         num (int): Number of samples
         pos_fraction (float): Fraction of positive samples
-        neg_pos_up (int, optional): Upper bound number of negative and
+        neg_pos_ub (int, optional): Upper bound number of negative and
             positive samples. Defaults to -1.
         add_gt_as_proposals (bool, optional): Whether to add ground truth
             boxes as proposals. Defaults to True.

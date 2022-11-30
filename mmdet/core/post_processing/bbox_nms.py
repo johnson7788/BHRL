@@ -1,3 +1,4 @@
+# Copyright (c) OpenMMLab. All rights reserved.
 import torch
 from mmcv.ops.nms import batched_nms
 
@@ -19,7 +20,7 @@ def multiclass_nms(multi_bboxes,
             contains scores of the background class, but this will be ignored.
         score_thr (float): bbox threshold, bboxes with scores lower than it
             will not be considered.
-        nms_thr (float): NMS IoU threshold
+        nms_cfg (dict): a dict that contains the arguments of nms operations
         max_num (int, optional): if there are more than max_num bboxes after
             NMS, only top max_num will be kept. Default to -1.
         score_factors (Tensor, optional): The factors multiplied to scores
@@ -41,7 +42,7 @@ def multiclass_nms(multi_bboxes,
 
     scores = multi_scores[:, :-1]
 
-    labels = torch.arange(num_classes, dtype=torch.long)
+    labels = torch.arange(num_classes, dtype=torch.long, device=scores.device)
     labels = labels.view(1, -1).expand_as(scores)
 
     bboxes = bboxes.reshape(-1, 4)
@@ -89,7 +90,7 @@ def multiclass_nms(multi_bboxes,
         keep = keep[:max_num]
 
     if return_inds:
-        return dets, labels[keep], keep
+        return dets, labels[keep], inds[keep]
     else:
         return dets, labels[keep]
 

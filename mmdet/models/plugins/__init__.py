@@ -1,3 +1,9 @@
-from .generate_ref_roi_feats import generate_ref_roi_feats
-from .ihr import IHR
-__all__=['generate_ref_roi_feats','IHR']
+# Copyright (c) OpenMMLab. All rights reserved.
+from .dropblock import DropBlock
+from .msdeformattn_pixel_decoder import MSDeformAttnPixelDecoder
+from .pixel_decoder import PixelDecoder, TransformerEncoderPixelDecoder
+
+__all__ = [
+    'DropBlock', 'PixelDecoder', 'TransformerEncoderPixelDecoder',
+    'MSDeformAttnPixelDecoder'
+]
