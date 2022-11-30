@@ -15,12 +15,17 @@ conda activate BHRL
 
 ```shell
 conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.2 -c pytorch
+conda install pytorch torchvision torchaudio pytorch-cuda=11.6 -c pytorch -c nvidia
+
 ```
 
 3. Install mmcv
 
 ```shell
 pip install mmcv-full==1.3.3 -f https://download.openmmlab.com/mmcv/dist/cu102/torch1.7.0/index.html
+或者: https://github.com/open-mmlab/mmcv
+pip install -U openmim
+mim install mmcv-full   #默认安装mmcv-full==1.7.0
 ```
 
 4. Install build requirements and then install MMDetection.
@@ -32,13 +37,15 @@ pip install -v -e .
 
 ## Datasets Preparation
 
-Download coco dataset and voc dataset from the official websites. 
+下载数据集 coco dataset and voc dataset from the official websites. 
+VOC数据集
+http://host.robots.ox.ac.uk/pascal/VOC/voc2007/
 
 Download voc_annotation from this [link](https://drive.google.com/drive/folders/1czLhPw65ILmiGU8z95qHGkVTi0EdTGiJ?usp=sharing).
 
 Download ref_ann_file from this [link](https://drive.google.com/drive/folders/1GztcOl8ltCVv9YJdhuvFZq15LTwxWJ7M?usp=sharing).
 
-We expect the directory structure to be the following:
+数据集目录设置如下
 ```
 BHRL
 ├── data
@@ -64,7 +71,7 @@ BHRL
 │   ├──res50_loadfrom.pth
 ```
 
-## Inference with a pretrained model
+## 使用一个预训练模型进行推理 
 ```shell
 ./tools/dist_test.sh ${CONFIG} ${CHECKPOINT} ${GPUS} --out ${RESULTS} --eval bbox --average ${EVALUATION_NUMBER}
 
