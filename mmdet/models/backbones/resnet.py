@@ -424,10 +424,10 @@ class ResNet(BaseModule):
                             override=dict(name='norm3'))
         else:
             raise TypeError('pretrained must be a str or None')
-
+        # eg: 50
         self.depth = depth
         if stem_channels is None:
-            stem_channels = base_channels
+            stem_channels = base_channels    #eg: 64
         self.stem_channels = stem_channels
         self.base_channels = base_channels
         self.num_stages = num_stages

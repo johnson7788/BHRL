@@ -28,14 +28,14 @@ pip install -U openmim
 mim install mmcv-full   #默认安装mmcv-full==1.7.0
 ```
 
-4. Install build requirements and then install MMDetection.
+4. 安装依赖包.
 
 ```shell
 pip install -r requirements/build.txt
 pip install -v -e . 
 ```
 
-## Datasets Preparation
+## 数据准备
 
 下载数据集 coco dataset and voc dataset from the official websites. 
 VOC数据集
@@ -61,7 +61,7 @@ BHRL
 ...
 ```
 
-## Backbone Weight Preparation
+## 主干权重准备
 
 Download the ResNet50 model for training from this [link](https://drive.google.com/file/d/1tcRtU-CBu1q00cnnZ6jiF2vvQCzY0a4P/view?usp=sharing).
 

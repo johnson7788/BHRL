@@ -102,8 +102,8 @@ class CustomDataset(Dataset):
                 'might cause errors if the path is not a local path. '
                 'Please use MMCV>= 1.3.16 if you meet errors.')
             self.data_infos = self.load_annotations(self.ann_file)
-
-        if self.proposal_file is not None:
+        # 如果self.proposal_file是False，那么加上一个判断
+        if self.proposal_file and self.proposal_file is not None:
             if hasattr(self.file_client, 'get_local_path'):
                 with self.file_client.get_local_path(
                         self.proposal_file) as local_path:
