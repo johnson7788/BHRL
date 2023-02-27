@@ -54,10 +54,11 @@ class OneShotCocoDataset(CustomDataset):
         self.test_seen_classes = test_seen_classes 
         self.ref_ann_file = ref_ann_file #ref denotes the query in the paper. 
         self.position = position
-        classes = None 
+        classes = None
+        seg_suffix = None
         super(OneShotCocoDataset,
               self).__init__(ann_file, pipeline, classes, data_root, img_prefix,
-                             seg_prefix, proposal_file, test_mode)
+                             seg_prefix, seg_suffix, proposal_file, test_mode)
 
     def load_annotations(self, ann_file): 
         self.coco = COCO(ann_file)
